@@ -7,6 +7,15 @@ import { MongooseModule } from '@nestjs/mongoose';
       useNewUrlParser: true,
       useUnifiedTopology: true,
     }),
+    // MongooseModule.forRootAsync({
+    //   connectionName: 'soportes',
+    //   useFactory: () => ({
+    //     uri:
+    //       'mongodb+srv://root:12345@cluster0-sbxf6.mongodb.net/soportes?retryWrites=true&w=majority',
+    //     useUnifiedTopology: true,
+    //     useNewUrlParser: true,
+    //   }),
+    // }),
   ],
   // imports: [
   //   MongooseModule.forRootAsync({

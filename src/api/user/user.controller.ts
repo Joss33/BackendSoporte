@@ -9,14 +9,17 @@ import {
   Body,
   Param,
   Query,
+  UseGuards,
 } from '@nestjs/common';
 import { CreateUserDTO } from './dto/user.dto';
 import { UserService } from './user.service';
+import { AuthGuard } from '@nestjs/passport';
 
 @Controller('user')
 export class UserController {
   constructor(private userService: UserService) {}
 
+  @UseGuards(AuthGuard('jwt'))
   @Post('/create')
   async createPost(@Res() res, @Body() createUserDTO: CreateUserDTO) {
     const user = await this.userService.createUser(createUserDTO);
@@ -25,12 +28,14 @@ export class UserController {
       .json({ message: 'User successfully created', user });
   }
 
+  @UseGuards(AuthGuard('jwt'))
   @Get('/')
   async getUsers(@Res() res) {
     const users = await this.userService.getUsers();
     return res.status(HttpStatus.OK).json({ users });
   }
 
+  @UseGuards(AuthGuard('jwt'))
   @Get('/:userID')
   async getUser(@Res() res, @Param('userID') userID) {
     try {
@@ -43,7 +48,8 @@ export class UserController {
     }
   }
 
-  @Delete('/:userID')
+  @UseGuards(AuthGuard('jwt'))
+  @Delete('/delete')
   async deleteUser(@Res() res, @Query('userID') userID) {
     try {
       const deletedUser = await this.userService.deleteUser(userID);
@@ -54,6 +60,8 @@ export class UserController {
         .json({ message: 'User does not exists' });
     }
   }
+
+  @UseGuards(AuthGuard('jwt'))
   @Put('/update')
   async updateProduct(
     @Res() res,

@@ -9,14 +9,17 @@ import {
   Body,
   Param,
   Query,
+  UseGuards,
 } from '@nestjs/common';
 import { CreateSupportDTO } from './dto/support.dto';
 import { SupportService } from './support.service';
+import { AuthGuard } from '@nestjs/passport';
 
 @Controller('support')
 export class SupportController {
   constructor(private supportService: SupportService) {}
 
+  @UseGuards(AuthGuard('jwt'))
   @Post('/create')
   async createPost(@Res() res, @Body() createSupportDTO: CreateSupportDTO) {
     const support = await this.supportService.createSupport(createSupportDTO);
@@ -25,12 +28,14 @@ export class SupportController {
       .json({ message: 'Support successfully created', support });
   }
 
+  @UseGuards(AuthGuard('jwt'))
   @Get('/')
   async getSupports(@Res() res) {
     const supports = await this.supportService.getSupports();
     return res.status(HttpStatus.OK).json({ supports });
   }
 
+  @UseGuards(AuthGuard('jwt'))
   @Get('/:supportID')
   async getSupport(@Res() res, @Param('supportID') supportID) {
     try {
@@ -43,7 +48,8 @@ export class SupportController {
     }
   }
 
-  @Delete('/:supportID')
+  @UseGuards(AuthGuard('jwt'))
+  @Delete('/delete')
   async deleteSupport(@Res() res, @Query('supportID') supportID) {
     try {
       const deleteSupport = await this.supportService.deleteSupport(supportID);
@@ -55,6 +61,7 @@ export class SupportController {
     }
   }
 
+  @UseGuards(AuthGuard('jwt'))
   @Put('/update')
   async updateSupport(
     @Res() res,
