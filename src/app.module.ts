@@ -2,12 +2,15 @@ import { Module } from '@nestjs/common';
 import { ApiModule } from './api/api.module';
 import { MongoModule } from './database/mongo.module';
 import { AuthModule } from './auth/auth.module';
-// import { AuthController } from './auth/auth.controller';
-// import { AuthService } from './auth/auth.service';
-// import { MongooseModule } from '@nestjs/mongoose';
+import { ConfigModule } from '@nestjs/config';
 
 @Module({
-  imports: [ApiModule, MongoModule, AuthModule],
+  imports: [
+    ApiModule,
+    MongoModule,
+    AuthModule,
+    ConfigModule.forRoot({ isGlobal: true }),
+  ],
   controllers: [],
   providers: [],
 })
