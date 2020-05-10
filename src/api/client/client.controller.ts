@@ -43,7 +43,7 @@ export class ClientController {
     } catch (error) {
       return res
         .status(HttpStatus.FOUND)
-        .json({ message: 'Client does not exists' });
+        .json({ message: 'Client does not existss' });
     }
   }
 
