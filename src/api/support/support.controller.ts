@@ -28,11 +28,11 @@ export class SupportController {
       .json({ message: 'Support successfully created', support });
   }
 
-  @UseGuards(AuthGuard('jwt'))
+  // @UseGuards(AuthGuard('jwt'))
   @Get('/')
   async getSupports(@Res() res) {
     const supports = await this.supportService.getSupports();
-    return res.status(HttpStatus.OK).json({ supports });
+    return res.status(HttpStatus.OK).json(supports);
   }
 
   @UseGuards(AuthGuard('jwt'))
