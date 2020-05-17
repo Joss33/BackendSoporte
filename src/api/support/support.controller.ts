@@ -19,7 +19,7 @@ import { AuthGuard } from '@nestjs/passport';
 export class SupportController {
   constructor(private supportService: SupportService) {}
 
-  @UseGuards(AuthGuard('jwt'))
+  // @UseGuards(AuthGuard('jwt'))
   @Post('/create')
   async createPost(@Res() res, @Body() createSupportDTO: CreateSupportDTO) {
     const support = await this.supportService.createSupport(createSupportDTO);
@@ -35,7 +35,7 @@ export class SupportController {
     return res.status(HttpStatus.OK).json(supports);
   }
 
-  @UseGuards(AuthGuard('jwt'))
+  // @UseGuards(AuthGuard('jwt'))
   @Get('/:supportID')
   async getSupport(@Res() res, @Param('supportID') supportID) {
     try {
@@ -48,7 +48,7 @@ export class SupportController {
     }
   }
 
-  @UseGuards(AuthGuard('jwt'))
+  // @UseGuards(AuthGuard('jwt'))
   @Delete('/delete')
   async deleteSupport(@Res() res, @Query('supportID') supportID) {
     try {
