@@ -8,6 +8,6 @@ export const SupportSchema = new Schema({
   solution: String,
   solutionDate: { type: Date, default: Date.now },
   state: String,
-  clients: [{ type: Schema.Types.ObjectId, ref: 'clients' }],
-  users: [{ type: Schema.Types.ObjectId, ref: 'users' }],
+  clients: String,
+  users: String,
 });
