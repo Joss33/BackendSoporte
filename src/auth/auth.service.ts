@@ -17,7 +17,7 @@ export class AuthService {
       this.usersService.usersTrash();
       return result;
     }
-    return null;
+    return console.log('Usuario not exists');
   }
 
   async login(user: any) {
