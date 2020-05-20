@@ -61,7 +61,7 @@ export class SupportController {
     }
   }
 
-  @UseGuards(AuthGuard('jwt'))
+  // @UseGuards(AuthGuard('jwt'))
   @Put('/update')
   async updateSupport(
     @Res() res,

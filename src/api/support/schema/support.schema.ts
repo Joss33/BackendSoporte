@@ -1,12 +1,12 @@
 import { Schema } from 'mongoose';
 
 export const SupportSchema = new Schema({
-  date: { type: Date, default: Date.now },
+  date: Date,
   detail: String,
   priority: String,
   remoteProgram: String,
   solution: String,
-  solutionDate: { type: Date, default: Date.now },
+  solutionDate: Date,
   state: String,
   clients: String,
   users: String,
