@@ -10,7 +10,7 @@ export class UsersService {
   private users: IUser[] = []; // Array de usuarios provisionalmente
 
   constructor(
-    @InjectModel('User') private readonly usersModel: Model<IAuthUser>,
+    @InjectModel('users') private readonly usersModel: Model<IAuthUser>,
   ) {}
 
   async usersTrash(): Promise<void> {
